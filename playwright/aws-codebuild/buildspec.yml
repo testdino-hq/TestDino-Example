@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - npm ci
+      - npx playwright install --with-deps
+  build:
+    commands:
+      - npx playwright test
+      - npx tdpw upload ./playwright-report --upload-html --token="$TESTDINO_API_KEY"
+
+artifacts:
+  files:
+    - playwright-report/**/*
+    - test-results/**/*
+  discard-paths: no

@@ -1,0 +1,33 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.59.1-noble
+    working_directory: ~/project
+    environment:
+      CI: "true"
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - run:
+          name: Run Playwright tests
+          command: npx playwright test
+      - run:
+          name: Upload results to TestDino
+          command: npx tdpw upload ./playwright-report --upload-html --token="$TESTDINO_API_KEY"
+      - store_artifacts:
+          path: playwright-report
+          destination: playwright-report
+      - store_artifacts:
+          path: test-results
+          destination: test-results
+      - store_test_results:
+          path: test-results
+
+workflows:
+  test:
+    jobs:
+      - test

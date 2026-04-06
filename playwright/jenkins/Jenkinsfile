@@ -1,0 +1,53 @@
+pipeline {
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.59.1-noble'
+            args '-u root'
+        }
+    }
+
+    environment {
+        CI = 'true'
+        HOME = '/root'
+        TESTDINO_API_KEY = credentials('TESTDINO_API_KEY')
+    }
+
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh 'npm ci'
+            }
+        }
+
+        stage('Install Playwright browsers') {
+            steps {
+                sh 'npx playwright install --with-deps'
+            }
+        }
+
+        stage('Run Playwright tests') {
+            steps {
+                sh 'npx playwright test'
+            }
+        }
+
+        stage('Upload results to TestDino') {
+            steps {
+                sh 'npx tdpw upload ./playwright-report --upload-html --token="$TESTDINO_API_KEY"'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit allowEmptyResults: true, testResults: 'test-results/junit.xml'
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true
+        }
+    }
+}
