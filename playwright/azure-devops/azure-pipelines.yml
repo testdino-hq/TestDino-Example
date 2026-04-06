@@ -29,7 +29,7 @@ steps:
   - script: npx playwright test
     displayName: Run Playwright tests
 
-  - script: npx tdpw upload ./playwright-report --upload-html --token="$(TESTDINO_API_KEY)"
+  - script: npx tdpw upload ./playwright-report --token="$(TESTDINO_API_KEY)"
     displayName: Upload results to TestDino
 
   - task: PublishTestResults@2

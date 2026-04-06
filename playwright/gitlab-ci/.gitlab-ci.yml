@@ -11,7 +11,7 @@ playwright:
   script:
     - npm ci
     - npx playwright test
-    - npx tdpw upload ./playwright-report --upload-html --token="$TESTDINO_API_KEY"
+    - npx tdpw upload ./playwright-report --token="$TESTDINO_API_KEY"
   artifacts:
     when: always
     paths:

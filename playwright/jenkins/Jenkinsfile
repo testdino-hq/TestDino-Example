@@ -38,7 +38,7 @@ pipeline {
 
         stage('Upload results to TestDino') {
             steps {
-                sh 'npx tdpw upload ./playwright-report --upload-html --token="$TESTDINO_API_KEY"'
+                sh 'npx tdpw upload ./playwright-report --token="$TESTDINO_API_KEY"'
             }
         }
     }

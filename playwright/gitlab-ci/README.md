@@ -3,7 +3,7 @@
 This example runs Playwright in GitLab CI and uploads the report to TestDino with the exact command below.
 
 ```bash
-npx tdpw upload ./playwright-report --upload-html --token="YOUR_NEW_TOKEN"
+npx tdpw upload ./playwright-report --token="YOUR_NEW_TOKEN"
 ```
 
 ## What to do
@@ -18,5 +18,5 @@ npx tdpw upload ./playwright-report --upload-html --token="YOUR_NEW_TOKEN"
 npm ci
 npx playwright install
 npx playwright test
-npx tdpw upload ./playwright-report --upload-html --token="YOUR_NEW_TOKEN"
+npx tdpw upload ./playwright-report --token="YOUR_NEW_TOKEN"
 ```
