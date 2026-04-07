@@ -2,6 +2,8 @@
 
 This is an example project that shows how to run Playwright tests on CircleCI with 4 parallel containers and upload the merged report to TestDino.
 
+Tool URL: [CircleCI](https://circleci.com/)
+
 The example config:
 
 - installs dependencies
@@ -10,7 +12,7 @@ The example config:
 - merges the shard reports into `playwright-report/report.json`
 - uploads the merged report to TestDino
 
-Set the `TESTDINO_TOKEN` environment variable in CircleCI.
+Set the `TESTDINO_TOKEN` environment variable in CircleCI. The sample also accepts `TESTDINO_API_KEY` for consistency with cross-provider setup guides.
 
 Get your token from [testdino](https://app.testdino.com).
 

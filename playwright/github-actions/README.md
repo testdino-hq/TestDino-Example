@@ -2,6 +2,8 @@
 
 This is an example project that shows how to run Playwright tests on GitHub Actions with 4 shards and upload the merged report to TestDino.
 
+Tool URL: [GitHub Actions](https://github.com)
+
 The example workflow:
 
 - installs dependencies and Playwright browsers

@@ -10,26 +10,41 @@ jobs:
       CI: "true"
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: npm ci
+
       - run:
           name: Run Playwright shard
-          command: npx playwright test --shard=$((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL
-      - run:
-          name: Collect blob report
           command: |
             mkdir -p workspace/blob/$CIRCLE_NODE_INDEX
-            cp -R blob-report/. workspace/blob/$CIRCLE_NODE_INDEX/
+            npm ci
+
+            set +e
+            npx playwright test --shard=$((CIRCLE_NODE_INDEX + 1))/$CIRCLE_NODE_TOTAL
+            TEST_EXIT_CODE=$?
+
+            if [ -d blob-report ]; then
+              cp -R blob-report/. workspace/blob/$CIRCLE_NODE_INDEX/
+            fi
+
+            echo $TEST_EXIT_CODE > /tmp/test-exit-code
+            exit 0
+
       - persist_to_workspace:
           root: workspace
           paths:
             - blob
+
       - store_artifacts:
           path: test-results
           destination: test-results
+
       - store_test_results:
           path: test-results
+
+      - run:
+          name: Mark shard failed if tests failed
+          when: always
+          command: |
+            exit $(cat /tmp/test-exit-code)
 
   merge-and-upload:
     docker:
@@ -39,19 +54,25 @@ jobs:
       CI: "true"
     steps:
       - checkout
+
       - attach_workspace:
           at: workspace
+
       - run:
           name: Install dependencies
           command: npm ci
+
       - run:
-          name: Merge Playwright reports to JSON
+          name: Merge reports
           command: |
-            mkdir -p playwright-report
-            npx playwright merge-reports --reporter=json workspace/blob > playwright-report/report.json
+            mkdir -p merged-blob-reports playwright-report
+            find workspace/blob -type f -name "*.zip" -exec cp {} merged-blob-reports/ \;
+            npx playwright merge-reports --reporter=json merged-blob-reports > playwright-report/report.json
+
       - run:
-          name: Upload results to TestDino
+          name: Upload to TestDino
           command: npx tdpw upload ./playwright-report --token="$TESTDINO_TOKEN"
+
       - store_artifacts:
           path: playwright-report
           destination: playwright-report
@@ -62,4 +83,7 @@ workflows:
       - test
       - merge-and-upload:
           requires:
-            - test
+            - test:
+                - success
+                - failed
+                - canceled

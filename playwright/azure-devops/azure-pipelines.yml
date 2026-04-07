@@ -30,9 +30,9 @@ stages:
         steps:
           - checkout: self
 
-          - task: NodeTool@0
+          - task: UseNode@1
             inputs:
-              versionSpec: "20.x"
+              version: "20.x"
             displayName: Install Node.js
 
           - script: npm ci
@@ -71,9 +71,9 @@ stages:
         steps:
           - checkout: self
 
-          - task: NodeTool@0
+          - task: UseNode@1
             inputs:
-              versionSpec: "20.x"
+              version: "20.x"
             displayName: Install Node.js
 
           - script: npm ci
@@ -86,12 +86,27 @@ stages:
             displayName: Download blob reports
 
           - script: |
-              mkdir -p playwright-report
-              npx playwright merge-reports --reporter=json ./all-blob-reports > playwright-report/report.json
+              mkdir -p playwright-report all-blob-reports-flat
+              find all-blob-reports -type f -exec cp {} all-blob-reports-flat/ \;
+              if find all-blob-reports-flat -type f | grep -q .; then
+                npx playwright merge-reports --reporter=json ./all-blob-reports-flat > playwright-report/report.json
+              else
+                echo "No blob report files were found to merge."
+                exit 1
+              fi
             displayName: Merge Playwright reports to JSON
+            condition: always()
 
-          - script: npx tdpw upload ./playwright-report --token="$(TESTDINO_TOKEN)"
+          - script: |
+              if [ ! -f playwright-report/report.json ]; then
+                echo "Merged report was not created, so TestDino upload is being skipped."
+                exit 0
+              fi
+              npx tdpw upload ./playwright-report --token="$TESTDINO_TOKEN"
             displayName: Upload results to TestDino
+            condition: always()
+            env:
+              TESTDINO_TOKEN: $(TESTDINO_TOKEN)
 
           - task: PublishPipelineArtifact@1
             condition: always()

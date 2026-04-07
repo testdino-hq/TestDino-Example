@@ -2,6 +2,8 @@
 
 This is an example project that shows how to run Playwright tests on Jenkins with 4 shards and upload the merged report to TestDino.
 
+Tool URL: [Jenkins](https://www.jenkins.io/)
+
 The example pipeline:
 
 - installs dependencies and Playwright browsers

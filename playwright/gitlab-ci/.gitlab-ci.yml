@@ -1,5 +1,5 @@
 image: mcr.microsoft.com/playwright:v1.59.1-noble
-
+  
 stages:
   - test
   - report
@@ -26,6 +26,7 @@ playwright:
 
 merge-report:
   stage: report
+  when: always
   needs:
     - job: playwright
       artifacts: true
@@ -40,3 +41,11 @@ merge-report:
     paths:
       - playwright-report/
     expire_in: 14 days
+
+    - run:
+    name: Merge Playwright reports to JSON
+    command: |
+      mkdir -p merged-blob-reports playwright-report
+      find workspace/blob -type f -name "*.zip" -exec cp {} merged-blob-reports/ \;
+      npx playwright merge-reports --reporter=json merged-blob-reports > playwright-report/report.json
+

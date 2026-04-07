@@ -2,6 +2,8 @@
 
 This is an example project that shows how to run Playwright tests on GitLab CI with 4 shards and upload the merged report to TestDino.
 
+Tool URL: [GitLab CI/CD](https://about.gitlab.com)
+
 The example pipeline:
 
 - installs dependencies

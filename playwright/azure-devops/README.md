@@ -2,6 +2,8 @@
 
 This is an example project that shows how to run Playwright tests on Azure DevOps with 4 shards and upload the merged report to TestDino.
 
+Tool URL: [Azure DevOps](https://azure.microsoft.com/products/devops)
+
 The example pipeline:
 
 - installs dependencies and Playwright browsers
@@ -9,8 +11,11 @@ The example pipeline:
 - stores blob reports from each shard
 - merges the shard reports into `playwright-report/report.json`
 - uploads the merged report to TestDino
+- still attempts merge and upload even if one or more test shards fail
 
 Set the `TESTDINO_TOKEN` secret pipeline variable.
+
+Azure DevOps secret pipeline variables are not automatically exposed to scripts, so the upload step maps `TESTDINO_TOKEN` through `env:`.
 
 Get your token from [testdino](https://app.testdino.com).
 

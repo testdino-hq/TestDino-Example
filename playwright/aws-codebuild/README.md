@@ -2,6 +2,8 @@
 
 This is an example project that shows how to run Playwright tests on AWS CodeBuild with 4 shard passes and upload the merged report to TestDino.
 
+Tool URL: [AWS CodeBuild](https://aws.amazon.com/codebuild/)
+
 The example build:
 
 - installs dependencies and Playwright browsers
