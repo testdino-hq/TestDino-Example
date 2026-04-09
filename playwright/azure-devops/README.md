@@ -58,11 +58,11 @@ npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 - the reports are merged into `playwright-report/report.json`
 - the merged report is uploaded to TestDino
 
-<img src="../../assets/azure-devops/testdino-azuredevops-pipeline.png" alt="Azure DevOps pipeline run" width="600" />
+<img src="../../assets/azure-devops/testdino-azuredevops-pipeline.png" alt="Azure DevOps pipeline run" width="800" />
 
-<img src="../../assets/azure-devops/testdino-azuredevops-testrun.png" alt="TestDino test run from Azure DevOps" width="600" />
+<img src="../../assets/azure-devops/testdino-azuredevops-testrun.png" alt="TestDino test run from Azure DevOps" width="800" />
 
-<img src="../../assets/azure-devops/testdino-azuredevops-upload.png" alt="Azure DevOps upload step" width="600" />
+<img src="../../assets/azure-devops/testdino-azuredevops-upload.png" alt="Azure DevOps upload step" width="800" />
 
 
 

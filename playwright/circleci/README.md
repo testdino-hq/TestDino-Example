@@ -58,11 +58,11 @@ npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 - the reports are merged into `playwright-report/report.json`
 - the merged report is uploaded to TestDino
 
-<img src="../../assets/circleci/testdino-circleci-pipeline.png" alt="CircleCI pipeline run" width="600" />
+<img src="../../assets/circleci/testdino-circleci-pipeline.png" alt="CircleCI pipeline run" width="800" />
 
-<img src="../../assets/circleci/testdino-circleci-testrun.png" alt="TestDino test run from CircleCI" width="600" />
+<img src="../../assets/circleci/testdino-circleci-testrun.png" alt="TestDino test run from CircleCI" width="800" />
 
-<img src="../../assets/circleci/testdino-circleci-upload.png" alt="CircleCI upload step" width="600" />
+<img src="../../assets/circleci/testdino-circleci-upload.png" alt="CircleCI upload step" width="800" />
 
 
 

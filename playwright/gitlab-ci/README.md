@@ -56,11 +56,11 @@ npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 - the reports are merged into `playwright-report/report.json`
 - the merged report is uploaded to TestDino
 
-<img src="../../assets/gitlab-ci/testdino-gitlab-pipeline.png" alt="GitLab CI pipeline run" width="600" />
+<img src="../../assets/gitlab-ci/testdino-gitlab-pipeline.png" alt="GitLab CI pipeline run" width="800" />
 
-<img src="../../assets/gitlab-ci/testdino-gitlab-testrun.png" alt="TestDino test run from GitLab CI" width="600" />
+<img src="../../assets/gitlab-ci/testdino-gitlab-testrun.png" alt="TestDino test run from GitLab CI" width="800" />
 
-<img src="../../assets/gitlab-ci/testdino-gitlab-upload.png" alt="GitLab CI upload step" width="600" />
+<img src="../../assets/gitlab-ci/testdino-gitlab-upload.png" alt="GitLab CI upload step" width="800" />
 
 
 ## Support

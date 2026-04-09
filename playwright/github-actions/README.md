@@ -53,11 +53,11 @@ npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 - the reports are merged into `playwright-report/report.json`
 - the merged report is uploaded to TestDino
 
-<img src="../../assets/github-actions/github-actions.png" alt="GitHub Actions workflow run" width="600" />
+<img src="../../assets/github-actions/github-actions.png" alt="GitHub Actions workflow run"  width="800" height="600" />
 
-<img src="../../assets/github-actions/testdino%20upolad.png" alt="GitHub Actions merge and upload job" width="600" />
+<img src="../../assets/github-actions/testdino%20upolad.png" alt="GitHub Actions merge and upload job" width="800" />
 
-<img src="../../assets/github-actions/testdino%20testrun.png" alt="TestDino test run" width="600" />
+<img src="../../assets/github-actions/testdino%20testrun.png" alt="TestDino test run" width="800" />
 
 ## Support
 

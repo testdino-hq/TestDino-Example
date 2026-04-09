@@ -1,6 +1,6 @@
 # TestDino Examples
 
-Ready-to-use Playwright examples for CI/CD providers supported by TestDino.
+Welcome to the **TestDino Examples** directory. This collection shows how to integrate [TestDino](https://app.testdino.com) with Playwright across different CI/CD providers.
 
 Each example shows how to:
 
@@ -17,14 +17,20 @@ Each example shows how to:
 
 Get your token from [testdino](https://app.testdino.com).
 
-## Examples
+## Playwright
 
-- [`playwright/github-actions`](./playwright/github-actions/README.md)
-- [`playwright/gitlab-ci`](./playwright/gitlab-ci/README.md)
-- [`playwright/circleci`](./playwright/circleci/README.md)
-- [`playwright/jenkins`](./playwright/jenkins/README.md)
-- [`playwright/azure-devops`](./playwright/azure-devops/README.md)
-- [`playwright/aws-codebuild`](./playwright/aws-codebuild/README.md)
+Examples demonstrating Playwright integration with TestDino, including sharding, report merging, and CI setup.
+
+### CI
+
+| Example | Description |
+| :--- | :--- |
+| [**AWS CodeBuild**](./playwright/aws-codebuild/README.md) | Run Playwright tests in AWS CodeBuild |
+| [**Azure DevOps**](./playwright/azure-devops/README.md) | Integration with Azure DevOps pipelines |
+| [**CircleCI**](./playwright/circleci/README.md) | Run Playwright tests in CircleCI |
+| [**GitHub Actions**](./playwright/github-actions/README.md) | Run Playwright tests in GitHub Actions |
+| [**GitLab CI**](./playwright/gitlab-ci/README.md) | Run Playwright tests in GitLab CI/CD |
+| [**Jenkins**](./playwright/jenkins/README.md) | Run Playwright tests in Jenkins |
 
 ## How To Use
 

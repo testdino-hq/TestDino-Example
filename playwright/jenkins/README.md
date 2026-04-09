@@ -59,12 +59,12 @@ npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 - the reports are merged into `playwright-report/report.json`
 - the merged report is uploaded to TestDino
 
-<img src="../../assets/jenkins/testdino-jenkins-pipeline.png" alt="Jenkins pipeline run" width="600" />
+<img src="../../assets/jenkins/testdino-jenkins-pipeline.png" alt="Jenkins pipeline run" width="800" />
 
 
-<img src="../../assets/jenkins/testdino-jenkins-testrun.png" alt="TestDino test run from Jenkins" width="600" />
+<img src="../../assets/jenkins/testdino-jenkins-testrun.png" alt="TestDino test run from Jenkins" width="800" />
 
-<img src="../../assets/jenkins/testdino-jenkins-upload.png" alt="Jenkins upload step" width="600" />
+<img src="../../assets/jenkins/testdino-jenkins-upload.png" alt="Jenkins upload step" width="800" />
 
 ## Support
 
