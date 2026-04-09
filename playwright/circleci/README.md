@@ -1,24 +1,48 @@
-# TestDino - CircleCI Playwright Example
+# TestDino Playwright Example for CircleCI
 
-This is an example project that shows how to run Playwright tests on CircleCI with 4 parallel containers and upload the merged report to TestDino.
+This example runs Playwright tests in 4 [CircleCI](https://circleci.com/) shards, merges the results into `playwright-report/report.json`, and uploads the merged report to [TestDino](https://app.testdino.com).
 
-Tool URL: [CircleCI](https://circleci.com/)
 
-The example config:
+## Prerequisites
 
-- installs dependencies
-- runs Playwright tests in 4 shards
-- stores blob reports from each shard
-- merges the shard reports into `playwright-report/report.json`
-- uploads the merged report to TestDino
+- [Node.js](https://nodejs.org/) v16+
+- [npm](https://www.npmjs.com/)
+- TestDino API key for report upload
+- CircleCI account for CircleCI usage
 
-Set the `TESTDINO_TOKEN` environment variable in CircleCI. The sample also accepts `TESTDINO_API_KEY` for consistency with cross-provider setup guides.
+---
 
-Get your token from [testdino](https://app.testdino.com).
+## Get Your TestDino API Key
 
-Copy this folder into the root of your repository and keep `.circleci/config.yml` in the same location.
+1. Sign in to [testdino](https://app.testdino.com).
+2. Create an organization and project.
+3. Generate an API key from the project setup or settings page.
+4. Copy the key and keep it secret.
 
-Local commands:
+## Add The CircleCI Environment Variable
+
+1. Open your project in CircleCI.
+2. Go to `Project Settings`.
+3. Open `Environment Variables`.
+4. Click `Add Environment Variable`.
+5. Set the name to `TESTDINO_TOKEN`.
+6. Paste your TestDino API key as the value.
+7. Save the variable.
+
+## Use This Example
+
+1. Copy this folder into your repository root.
+2. Keep `.circleci/config.yml` in the same location.
+3. Run:
+
+```bash
+npm ci
+npx playwright install
+```
+
+4. Push a commit to trigger the pipeline.
+
+## Local Run
 
 ```bash
 npm ci
@@ -27,15 +51,27 @@ npx playwright test
 npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 ```
 
-## Sample tests included
+## What Happens In CI
 
-This example includes multiple test files so shard-based CI examples actually distribute work.
+- CircleCI runs 4 Playwright shards
+- blob reports are collected from each shard
+- the reports are merged into `playwright-report/report.json`
+- the merged report is uploaded to TestDino
 
-The sample suite includes:
+<img src="../../assets/circleci/testdino-circleci-pipeline.png" alt="CircleCI pipeline run" width="600" />
 
-- passing tests across multiple spec files
-- one skipped test for reporting coverage
-- one expected-failure test using `test.fail()` for reporting coverage
+<img src="../../assets/circleci/testdino-circleci-testrun.png" alt="TestDino test run from CircleCI" width="600" />
 
-The skipped and expected-failure tests are intentional example cases. They are included to show richer reporting behavior without making the pipeline genuinely flaky.
+<img src="../../assets/circleci/testdino-circleci-upload.png" alt="CircleCI upload step" width="600" />
 
+
+
+## Support
+
+Documentation: [docs.testdino.com](https://docs.testdino.com)
+
+Email: [support@testdino.com](mailto:support@testdino.com)
+
+## License
+
+[MIT](../../LICENSE)

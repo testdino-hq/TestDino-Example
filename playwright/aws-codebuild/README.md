@@ -1,24 +1,46 @@
-# TestDino - AWS CodeBuild Playwright Example
+# TestDino Playwright Example for AWS CodeBuild
 
-This is an example project that shows how to run Playwright tests on AWS CodeBuild with 4 shard passes and upload the merged report to TestDino.
+This example runs Playwright tests in 4 [AWS CodeBuild](https://aws.amazon.com/codebuild/) shard passes, merges the results into `playwright-report/report.json`, and uploads the merged report to [TestDino](https://app.testdino.com).
 
-Tool URL: [AWS CodeBuild](https://aws.amazon.com/codebuild/)
+## Prerequisites
 
-The example build:
+- [Node.js](https://nodejs.org/) v16+
+- [npm](https://www.npmjs.com/)
+- TestDino API key for report upload
+- AWS account with CodeBuild access
 
-- installs dependencies and Playwright browsers
-- runs Playwright tests in 4 shard passes
-- stores blob reports from each shard pass
-- merges the shard reports into `playwright-report/report.json`
-- uploads the merged report to TestDino
+---
 
-Set the `TESTDINO_TOKEN` environment variable in CodeBuild.
+## Get Your TestDino API Key
 
-Get your token from [testdino](https://app.testdino.com).
+1. Sign in to [testdino](https://app.testdino.com).
+2. Create an organization and project.
+3. Generate an API key from the project setup or settings page.
+4. Copy the key and keep it secret.
 
-Copy this folder into the root of your repository and keep `buildspec.yml` at the repository root unless you configure a custom buildspec path.
+## Add The CodeBuild Environment Variable
 
-Local commands:
+1. Open your AWS CodeBuild project.
+2. Choose `Edit`.
+3. Open the `Environment` section.
+4. Add an environment variable named `TESTDINO_TOKEN`.
+5. Paste your TestDino API key as the value.
+6. Save the project.
+
+## Use This Example
+
+1. Copy this folder into your repository root.
+2. Keep `buildspec.yml` at the repository root unless you use a custom buildspec path.
+3. Run:
+
+```bash
+npm ci
+npx playwright install
+```
+
+4. Start the CodeBuild build.
+
+## Local Run
 
 ```bash
 npm ci
@@ -27,15 +49,19 @@ npx playwright test
 npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 ```
 
-## Sample tests included
+## What Happens In CI
 
-This example includes multiple test files so shard-based CI examples actually distribute work.
+- AWS CodeBuild runs 4 Playwright shard passes
+- blob reports are collected from each shard pass
+- the reports are merged into `playwright-report/report.json`
+- the merged report is uploaded to TestDino
 
-The sample suite includes:
+## Support
 
-- passing tests across multiple spec files
-- one skipped test for reporting coverage
-- one expected-failure test using `test.fail()` for reporting coverage
+Documentation: [docs.testdino.com](https://docs.testdino.com)
 
-The skipped and expected-failure tests are intentional example cases. They are included to show richer reporting behavior without making the pipeline genuinely flaky.
+Email: [support@testdino.com](mailto:support@testdino.com)
 
+## License
+
+[MIT](../../LICENSE)

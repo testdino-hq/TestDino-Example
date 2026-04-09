@@ -1,41 +1,70 @@
-# TestDino - GitHub Actions Playwright Example
+# TestDino Playwright Example for GitHub Actions
 
-This is an example project that shows how to run Playwright tests on GitHub Actions with 4 shards and upload the merged report to TestDino.
+This example runs Playwright tests in 4 [GitHub Actions](https://github.com/features/actions) shards, merges the results into `playwright-report/report.json`, and uploads the merged report to [TestDino](https://app.testdino.com).
 
-Tool URL: [GitHub Actions](https://github.com)
+## Prerequisites
 
-The example workflow:
+- [Node.js](https://nodejs.org/) v16+
+- [npm](https://www.npmjs.com/)
+- TestDino API key for report upload
+- GitHub account for GitHub Actions usage
 
-- installs dependencies and Playwright browsers
-- runs Playwright tests in 4 shards
-- uploads blob reports from each shard
-- merges the shard reports into `playwright-report/report.json`
-- uploads the merged report to TestDino
+---
 
-Set the `TESTDINO_TOKEN` GitHub Actions secret.
+## Get Your TestDino API Key
 
-Get your token from [testdino](https://app.testdino.com).
+1. Sign in to [testdino](https://app.testdino.com).
+2. Create an organization and project.
+3. Generate an API key from the project setup or settings page.
+4. Copy the key and keep it secret.
 
-Copy this folder into the root of your repository and keep `.github/workflows/playwright.yml` in the same location.
+## Add The GitHub Secret
 
-Local commands:
+1. Go to `Settings` -> `Secrets and variables` -> `Actions`.
+2. Create a repository secret named `TESTDINO_TOKEN`.
+3. Paste your TestDino API key.
+
+## Use This Example
+
+1. Copy this folder into your repository root.
+2. Keep `.github/workflows/playwright.yml` in the same location.
+3. Run:
 
 ```bash
 npm ci
+npx playwright install
+```
+
+4. Push a commit or open a pull request.
+
+## Local Run
+
+```bash
+npm ci 
 npx playwright install
 npx playwright test
 npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 ```
 
-## Sample tests included
+## What Happens In CI
 
-This example includes multiple test files so shard-based CI examples actually distribute work.
+- GitHub Actions runs 4 Playwright shards
+- blob reports are uploaded from each shard
+- the reports are merged into `playwright-report/report.json`
+- the merged report is uploaded to TestDino
 
-The sample suite includes:
+<img src="../../assets/github-actions/github-actions.png" alt="GitHub Actions workflow run" width="600" />
 
-- passing tests across multiple spec files
-- one skipped test for reporting coverage
-- one expected-failure test using `test.fail()` for reporting coverage
+<img src="../../assets/github-actions/testdino%20upolad.png" alt="GitHub Actions merge and upload job" width="600" />
 
-The skipped and expected-failure tests are intentional example cases. They are included to show richer reporting behavior without making the pipeline genuinely flaky.
+<img src="../../assets/github-actions/testdino%20testrun.png" alt="TestDino test run" width="600" />
 
+## Support
+
+Documentation: [docs.testdino.com](https://docs.testdino.com)
+
+Email: [support@testdino.com](mailto:support@testdino.com)
+
+## License
+
+[MIT](../../LICENSE)
