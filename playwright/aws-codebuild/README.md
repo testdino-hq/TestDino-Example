@@ -56,6 +56,15 @@ npx tdpw upload ./playwright-report --token="YOUR_TESTDINO_TOKEN"
 - the reports are merged into `playwright-report/report.json`
 - the merged report is uploaded to TestDino
 
+<img src="../../assets/aws-codebuild/testdino-aws-codebuild-pipeline.png" alt="AWS CodeBuild pipeline run" width="800" />
+
+<img src="../../assets/aws-codebuild/testdino-aws-codebuild-testrun.png" alt="TestDino test run from AWS CodeBuild" width="800" />
+
+<img src="../../assets/aws-codebuild/testdino-aws-codebuild-upload.png" alt="AWS CodeBuild upload step" width="800" />
+
+
+
+
 ## Support
 
 Documentation: [docs.testdino.com](https://docs.testdino.com)
